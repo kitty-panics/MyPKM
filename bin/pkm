@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+
+#
+# My PKM
+#
+
+# 读取配置
+    # 工作目录
+working-dir=$(cat "$HOME/.config/.pkmrc" | rg "working-dir" | cut -d "=" -f 2)
+    # 默认编辑器
+defaults-editor=$(cat "$HOME/.config/.pkmrc" | rg "defaults-editor" | cut -d "=" -f 2)
+
+preview_Document() {
+    mdv "$1"
+}
+
+# 新建模板
+new_Template() {
+    if [[ -d == "$1" ]]; then
+        :
+    fi
+}
+
+# 删除文档
+delete_PKM() {
+    if [[]]; then
+        :
+    fi
+}
+
+# 搜索文档
+search_PKM() {
+    :
+}
+
+
+# 帮助页
+manual_Page() {
+        #  [arguments]
+    echo  -e "
+    Usage: pkm [options]
+
+    Options:
+    -h, --help     Displays this help
+    -v, --version  Displays version information
+    -p, --preview  Preview document
+    -n, --new      New template
+    -d, --delete   Delete document
+    -s, --search   Search for documents
+}
+
+# 版本信息
+show_Version() {
+    echo -e "
+    PKM v_0.0.1
+
+    It is written in the scripting language Bash.
+    "
+}
+
+# 参数判断
+case "$1" in
+"-h" | "--help")
+    manual_Page
+    ;;
+"-v" | "--version")
+    show_Version
+    ;;
+"-p" | "--preview")
+    preview_Document
+    ;;
+"-n" | "--new")
+    new_Template
+    ;;
+"-d" | "--delete")
+    delete_PKM
+    ;;
+"-s" | "--search")
+    search_PKM
+    ;;
+*)
+    echo -e "
+    No options/arguments were used or the wrong options/arguments were used.
+
+    Use the -h/-help option for detailed help.
+    "
+    ;;
+esac
